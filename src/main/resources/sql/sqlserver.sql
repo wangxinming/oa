@@ -14,7 +14,7 @@ CREATE TABLE OA_USER
   USER_MOBILE       NVARCHAR(20) UNIQUE,
   USER_EMAIL        NVARCHAR(200),
   USER_PWD          NVARCHAR(200),
-  ENTERPRISE_ID     INT DEFAULT 0,,
+  ENTERPRISE_ID     INT DEFAULT 0,
   USER_COMPANY      NVARCHAR(200),
   USER_DEPARTMENT   NVARCHAR(200),
   USER_POSITION     NVARCHAR(200),
@@ -74,7 +74,9 @@ EXECUTE sp_addextendedproperty N'MS_Description', N'模板内容', N'user', N'db
 EXECUTE sp_addextendedproperty N'MS_Description', N'模板描述信息', N'user', N'dbo', N'table', N'OA_CONTRACT_TEMPLATE', N'column', N'TEMPLATE_DES';
 EXECUTE sp_addextendedproperty N'MS_Description', N'模板创建时间', N'user', N'dbo', N'table', N'OA_CONTRACT_TEMPLATE', N'column', N'TEMPLATE_CREATETIME';
 
-INSERT INTO OA_CONTRACT_TEMPLATE(TEMPLATE_NAME,USER_ID,TEMPLATE_STATUS,TEMPLATE_HTML,TEMPLATE_CREATETIME) VALUES ('自定义合同',1,1,'<DIV style="margin-top: 25px;">
+INSERT INTO OA_CONTRACT_TEMPLATE(TEMPLATE_NAME,USER_ID,TEMPLATE_STATUS,TEMPLATE_HTML,TEMPLATE_CREATETIME) VALUES ('自定义合同',1,1,'<DIV style="margin-top: 25px;"></DIV>','2018-04-23 11:06:21.517');
+/*
+<DIV style="margin-top: 25px;">
                 <div class="row" id="customFile">
                     <div class="col-md-6">
                         <input id="file" type="file" accept=".doc,.docx" name="file" class="" style="" value="选择word文档">
@@ -85,8 +87,8 @@ INSERT INTO OA_CONTRACT_TEMPLATE(TEMPLATE_NAME,USER_ID,TEMPLATE_STATUS,TEMPLATE_
                 </div>
 		<div style="margin-top: 25px;margin-bottom: 20px;" id="download">
 		</div>
-</DIV>','2018-04-23 11:06:21.517');
-
+</DIV>
+*/
 if exists ( select *
  from  sysobjects
  where name = 'OA_DEPLOYMENT_TEMPLATE_RELATION'
@@ -324,6 +326,7 @@ CREATE TABLE OA_ENTERPRISE
 (
   ENTERPRISE_ID       INT IDENTITY PRIMARY KEY,
   COMPANY_NAME        NVARCHAR(100),
+  COMPANY_LOCATION    NVARCHAR(200)
   COMPANY_PROVINCE    NVARCHAR(20),
   COMPANY_CITY          NVARCHAR(50),
   COMPANY_OWNER         NVARCHAR(50),

@@ -588,6 +588,7 @@
                             $scope.addPage.data.companyCity = data.data.companyCity;
                             $scope.addPage.data.companyOwner = data.data.companyOwner;
                             $scope.addPage.data.ownerMobile = data.data.ownerMobile;
+                            $scope.addPage.data.location = data.data.location;
                             $scope.addPage.data.companyStatus = data.data.companyStatus==1?true:false;
                             $scope.addPage.data.createTime = data.data.createTime;
                             Loading.hide();
@@ -1082,7 +1083,7 @@
                             return  '<i><a title="编辑"  ng-hide="loginUserMenuMap[currentView]"  ng-click="listPage.action.edit(\'' + mData +'\')"> 编辑</a></i>' +
                                 // '<i title="编辑" ng-hide="loginUserMenuMap[currentView]" class="fa fa-pencil" ng-click="listPage.action.edit(\'' + mData +'\')"> </i>' +
                                     '<i><a title="删除"  ng-hide="loginUserMenuMap[currentView]"  ng-click="listPage.action.remove(\'' + mData + '\')">删除</a></i>'+
-                                    '<i><a title="'+(full.status==1?'停用':'启用')+'" ng-hide="loginUserMenuMap[currentView]"  ng-click="listPage.action.active('+(full.status==1?'false':'true')+',\''+mData+'\',\''+full.status+'\')"></a></i>';
+                                    '<i><a title="'+(full.status==1?'停用':'启用')+'" ng-hide="loginUserMenuMap[currentView]"  ng-click="listPage.action.active('+(full.status==1?'false':'true')+',\''+mData+'\',\''+full.status+'\')">'+(full.status==1?'停用':'启用')+'</a></i>';
                                 // '<i title="删除" ng-disabled="loginUserMenuMap[currentView]" class="fa fa-trash-o" ng-click="listPage.action.remove(\'' + mData + '\')"></i>';
 
                         }
@@ -1684,7 +1685,7 @@
                 '                                <ul>';
 
             var process = '<li><a href="/index.html#/process">新合同建立</a></li>';
-            var myProcess = '<li><a href="/index.html#/myProcess">待处理合同</a></li>';
+            // var myProcess = '<li><a href="/index.html#/myProcess">待处理合同</a></li>';
             var initiator = '<li><a href="/index.html#/initiator">我发起的合同</a></li>';
 
             var pendingParent = '  <li class="sidebar-dropdown">\n' +
@@ -1758,9 +1759,9 @@
                     if(data.pending){
                         tmp += pending;
                     }
-                    if(data.myProcess){
-                        tmp += myProcess;
-                    }
+                    // if(data.myProcess){
+                    //     tmp += myProcess;
+                    // }
                     if(data.initiator){
                         tmp += initiator;
                     }

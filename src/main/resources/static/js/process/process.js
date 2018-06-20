@@ -376,6 +376,7 @@
                                 if(data.rows) {
                                     for (var j = 0; j < data.rows.length; j++) {
                                         $('#'+data.rows[j].key).val(data.rows[j].value);
+                                        $('#'+data.rows[j].key).attr("disabled", true);
                                     }
                                 }
                                 if(data.download){
@@ -1439,9 +1440,11 @@
 
                     $scope.showCommit =  data.showCommit;
                     $scope.fields = data.fields;
-                    for(var i=0;i<data.fields.length;i++){
-                        if(data.fields[i].fieldType) {
-                            $('#'+data.fields[i].fieldMd5).attr('placeholder', data.fields[i].fieldType)
+                    if($scope.fields) {
+                        for (var i = 0; i < data.fields.length; i++) {
+                            if (data.fields[i].fieldType) {
+                                $('#' + data.fields[i].fieldMd5).attr('placeholder', data.fields[i].fieldType)
+                            }
                         }
                     }
                     Loading.hide();
