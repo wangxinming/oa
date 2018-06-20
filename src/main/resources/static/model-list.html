@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <title>模型管理</title>
+    <!--<link rel="stylesheet" type="text/css" href="lib/datables/datatables.min.css"/>-->
+    <!--<link rel="stylesheet" type="text/css" href="lib/datables/DataTables-1.10.16/css/dataTables.bootstrap.css"/>-->
+    <!--<link rel="stylesheet" type="text/css" href="css/bootstrap-3.3.7-dist/css/bootstrap.css"/>-->
+</head>
+<body>
+
+
+<!--<table border="1"  id="table_id_example"  class="table table-striped table-bordered border-force" />-->
+<!--<table id="table_id_example" class="display" width="90%"></table>-->
+<!--<table id="table_id_example" class="display" style="width:80%">-->
+    <!--<thead>-->
+    <!--<tr>-->
+        <!--<th>First name</th>-->
+        <!--<th>Last name</th>-->
+        <!--<th>Position</th>-->
+        <!--<th>Office</th>-->
+        <!--<th>Start date</th>-->
+        <!--<th>Salary</th>-->
+    <!--</tr>-->
+    <!--</thead>-->
+    <!--<tfoot>-->
+    <!--<tr>-->
+        <!--<th>First name</th>-->
+        <!--<th>Last name</th>-->
+        <!--<th>Position</th>-->
+        <!--<th>Office</th>-->
+        <!--<th>Start date</th>-->
+        <!--<th>Salary</th>-->
+    <!--</tr>-->
+    <!--</tfoot>-->
+<!--</table>-->
+<form action="batchImport" target="" id="uploadForm" method="post" enctype="multipart/form-data">
+    　　<input id="file" type="file" accept=".doc,.docx" name="file" value="选择word文档"/>
+    　　<input type="submit" name="submit" id="submit" value="保存" />
+</form>
+
+
+
+<div id="top">
+</div>
+<h2>模型列表</h2>
+<hr>
+<a href="javascript: AJAX.GET('/models/newModel')">绘制流程</a>
+<table border="1" id="model-list">
+    <tr>
+        <td>模型编号</td>
+        <td>模型名称</td>
+        <td>版本</td>
+        <td>创建时间</td>
+        <td>操作</td>
+    </tr>
+    <script id="models" type="text/html">
+        <tr>
+            <td>模型编号</td>
+            <td>模型名称</td>
+            <td>版本</td>
+            <td>创建时间</td>
+            <td>操作</td>
+        </tr>
+        {{each rows.list}}
+        <tr>
+            <td>{{$value.id}}</td>
+            <td>{{$value.name}}</td>
+            <td>{{$value.version}}</td>
+            <td>{{$value.createTime}}</td>
+            <td>
+                <a href="/modeler.html?modelId={{$value.id}}">编辑</a>
+             <a href="javascript: AJAX.DELETE('/models/{{$value.id}}')">删除</a>
+             <a href="javascript: AJAX.POST('/models/{{$value.id}}/deployment')">发布</a>
+            </td>
+        </tr>
+        {{/each}}
+    </script>
+</table>
+<hr>
+<h2>部署列表</h2>
+<hr>
+<table border="1" id="deployment-list">
+    <tr>
+        <td>编号</td>
+        <td>名称</td>
+        <td>部署时间</td>
+        <td>操作</td>
+    </tr>
+    <script id="deployments" type="text/html">
+        <tr>
+            <td>编号</td>
+            <td>名称</td>
+            <td>部署时间</td>
+            <td>操作</td>
+        </tr>
+    {{each rows.list}}
+    <tr>
+        <td>{{$value.id}}</td>
+        <td>{{$value.name}}</td>
+        <td>{{$value.deploymentTime}}</td>
+        <td><a href="javascript: AJAX.DELETE('/deployments/{{$value.id}}')">删除</a></td>
+    </tr>
+    {{/each}}
+    </script>
+</table>
+
+<script type="text/javascript" src="lib/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="lib/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/ajax-util.js"></script>
+<script type="text/javascript" src="lib/js/template.js"></script>
+<!--<script type="text/javascript" src="lib/datables/datatables.js"></script>-->
+<!--<script type="text/javascript" src="lib/datables/DataTables-1.10.16/js/dataTables.bootstrap.min.js"></script>-->
+<!--<script type="text/javascript" src="lib/datables/DataTables-1.10.16/js/jquery.dataTables.min.js"></script>-->
+<script type="application/javascript">
+$(function() {
+    AJAX.GET("/models", null
+            , function (result) {
+                var html = template("models", result);
+                $("#model-list").html(html);
+            });
+
+    AJAX.GET("/deployments", null
+            , function (result) {
+                var html = template("deployments", result);
+                $("#deployment-list").html(html);
+            });
+})
+
+</script>
+
+</body>
+</html>

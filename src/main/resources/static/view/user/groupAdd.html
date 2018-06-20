@@ -1,0 +1,69 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<div dialog info="pageDialog" data="addPage.data" class="ldialog">
+    <div class="portlet-body form">
+        <form class="form-horizontal" role="form" id="addForm" name="form">
+            <div class="dialog-con">
+                <table class="modal-table">
+                    <tr>
+                        <td class="row-lable"> 组名称 </td>
+                        <td>
+                            <input type="text" id="name" ng-model="groupDialog.groupName"  placeholder="组名称" name="name" maxlength="20" required/>
+                            <span class="required">*</span>
+                            <div class="required" ng-show="form.name.$dirty && form.name.$invalid">
+                                <span ng-show="form.name.$error.required">此项不能为空.</span>
+                                <span ng-show="!form.name.$error.required && form.name.$error.maxlength">超出长度限制.</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-lable"> 组描述 </td>
+                        <td>
+                            <input type="text" id="description" ng-model="groupDialog.description"  placeholder="组描述" name="description" maxlength="40"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="vt row-lable"> 菜单权限 </td>
+                        <td class="pt5">
+                            <ul style="margin-left: 0px;" id="{{editPage.datas.metricTree.treeId}}" user-ztree="editPage.datas.metricTree" class="ztree"></ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-lable"> 流程定义操作权限 </td>
+                        <td>
+                            <div class="inline-group">
+                                <span class='radio'><label><input class="ace"  style="position:relative;"  type='radio' name="flow" ng-model="groupDialog.flow" value="0"/><span class="lbl"></span></label>查看权限</span>
+                                <span class='radio'><label><input class="ace"  style="position:relative;"  type='radio' name="flow" ng-model="groupDialog.flow" value="1"/><span class="lbl"></span></label>操作权限</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-lable"> 流程操作权限 </td>
+                        <td>
+                            <div class="inline-group">
+                                <span class='radio'><label><input class="ace"  style="position:relative;"  type='radio' name="task" ng-model="groupDialog.task" value="0"/><span class="lbl"></span></label>查看权限</span>
+                                <span class='radio'><label><input class="ace"  style="position:relative;"  type='radio' name="task" ng-model="groupDialog.task" value="1"/><span class="lbl"></span></label>操作权限</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="row-lable"> 备注可读权限 </td>
+                        <td>
+                            <div class="inline-group">
+                                <span class='radio'><label><input class="ace"  style="position:relative;"  type='radio' name="attachment" ng-model="groupDialog.attachment" value="0" /><span class="lbl"></span></label>可见</span>
+                                <span class='radio'><label><input class="ace"  style="position:relative;"  type='radio' name="attachment" ng-model="groupDialog.attachment" value="1" /><span class="lbl"></span></label>不可见</span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-disabled="!form.$valid" class="btn btn-primary" ng-click="pageDialog.save()"> {{dialog.buttonText==null?"确定":dialog.buttonText}}</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </form>
+    </div>
+
+</div>

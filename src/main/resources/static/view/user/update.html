@@ -1,0 +1,27 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<div dialog info="pageDialogUpdate" data="addPageUpdate.data" class="ldialog">
+
+    <div class="portlet-body form">
+        <form class="form-horizontal" role="form" name="form">
+            <div class="form-body">
+
+                <div class="form-group">
+                    <label  class="col-md-3 control-label">新密码</label>
+                    <div class="col-md-9">
+                        <input type="password" class="form-control"  name="userPwdNew" ng-model="addPageUpdate.data.userPwdNew" placeholder="新密码" maxlength="20" required>
+                        <div class="required" ng-show="form.userPwdNew.$dirty && form.userPwdNew.$invalid">
+                            <span ng-show="form.userPwdNew.$error.required">此项不能为空.</span>
+                            <!--<span ng-show="!form.userName.$error.required && form.userName.$error.minlength">长度最小6位字符.</span>-->
+                            <span ng-show="!form.userPwdNew.$error.required && form.userPwdNew.$error.maxlength">长度最大20位字符.</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+</div>
