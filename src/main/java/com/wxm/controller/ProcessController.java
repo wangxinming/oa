@@ -755,6 +755,7 @@ public class ProcessController {
                 int size = text.indexOf(historicVariableInstance.getVariableName());
                 if (size > 0 && historicVariableInstance.getValue() != null && StringUtils.isNotBlank(historicVariableInstance.getValue().toString())) {
                     String inputValue = map.get(historicVariableInstance.getVariableName());
+                    if(null == text || inputValue == null) continue;
                     int start = text.indexOf(inputValue);
                     text.replace(start,start+inputValue.length(),String.format("<u>%s</u>",historicVariableInstance.getValue().toString()));
                 }

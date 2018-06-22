@@ -200,6 +200,7 @@ public class DeployController {
             for(Map.Entry<String,String> entry : mapFieldCheck.entrySet()){
                 String key = "name"+entry.getKey().substring(8);
                 OAFormProperties oaFormPropertie = mapDBField.get(key);
+                if(null == oaFormPropertie ) continue;
                 OAFormProperties oaFormProperties = new OAFormProperties();
                 oaFormProperties.setPropertiesId(oaFormPropertie.getPropertiesId());
                 oaFormProperties.setStatus(entry.getValue().equals("on")?1:0);
@@ -480,7 +481,7 @@ public class DeployController {
         Map<String, Object> result = new HashMap<>();
         result.put("result","success");
         //判断当前合同是否自定义合同
-        if(null != oaContractCirculationWithBLOBs.getContractId()){
+        if(null != oaContractCirculationWithBLOBs.getContractId() && oaContractCirculationWithBLOBs.getContractPdf() != null){
             result.put("download",oaContractCirculationWithBLOBs.getContractId());
         }
         if(StringUtils.isNotBlank(historicProcessInstance.getId())){
@@ -612,7 +613,7 @@ public class DeployController {
         result.put("result","success");
         Map<String,KeyValue> map = new LinkedHashMap();
         //判断当前合同是否自定义合同
-        if(oaContractCirculationWithBLOBs.getContractId() != null) {
+        if(oaContractCirculationWithBLOBs.getContractId() != null && oaContractCirculationWithBLOBs.getContractPdf() != null ) {
             result.put("download", oaContractCirculationWithBLOBs.getContractId());
         }
         if(StringUtils.isNotBlank(processInstance.getId())){

@@ -375,7 +375,11 @@
 
                                 if(data.rows) {
                                     for (var j = 0; j < data.rows.length; j++) {
-                                        $('#'+data.rows[j].key).val(data.rows[j].value);
+                                        if(data.rows[j].value == 'on'){
+                                            $('#' + data.rows[j].key).attr("checked",true);
+                                        }else {
+                                            $('#' + data.rows[j].key).val(data.rows[j].value);
+                                        }
                                         $('#'+data.rows[j].key).attr("disabled", true);
                                     }
                                 }
@@ -1007,7 +1011,12 @@
                                 // var html = "<div align=\"CENTER\"><b>关键信息</b></div><div><label>甲方名称：********</label> <label>乙方名称：*****/label></div>>";
                                 if(data.rows) {
                                     for (var j = 0; j < data.rows.length; j++) {
-                                        $('#'+data.rows[j].key).val(data.rows[j].value);
+                                        // $('#'+data.rows[j].key).val(data.rows[j].value);
+                                        if(data.rows[j].value == 'on'){
+                                            $('#' + data.rows[j].key).attr("checked",true);
+                                        }else {
+                                            $('#' + data.rows[j].key).val(data.rows[j].value);
+                                        }
                                     }
                                 }
                                 if(data.download){
@@ -1253,7 +1262,12 @@
                                 // $('#keyword').html(data.keyword);
                                 if(data.rows) {
                                     for (var j = 0; j < data.rows.length; j++) {
-                                        $('#'+data.rows[j].key).val(data.rows[j].value);
+                                        // $('#'+data.rows[j].key).val(data.rows[j].value);
+                                        if(data.rows[j].value == 'on'){
+                                            $('#' + data.rows[j].key).attr("checked",true);
+                                        }else {
+                                            $('#' + data.rows[j].key).val(data.rows[j].value);
+                                        }
                                     }
                                 }
                                 if(data.download){

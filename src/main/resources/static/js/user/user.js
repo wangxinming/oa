@@ -589,6 +589,7 @@
                             $scope.addPage.data.companyOwner = data.data.companyOwner;
                             $scope.addPage.data.ownerMobile = data.data.ownerMobile;
                             $scope.addPage.data.location = data.data.location;
+                            $scope.addPage.data.subCompanyName = data.data.subCompanyName;
                             $scope.addPage.data.companyStatus = data.data.companyStatus==1?true:false;
                             $scope.addPage.data.createTime = data.data.createTime;
                             Loading.hide();
